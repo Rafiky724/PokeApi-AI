@@ -19,7 +19,7 @@ export function usePokemonModal(pokemonDetailsMap: Record<string, PokemonDetails
       if (pokemonDetailsMap[pokemon.name]) {
         setSelected(pokemonDetailsMap[pokemon.name]);
       } else {
-        const details = await fetchPokemonDetails(pokemon.url); // Usa fetchPokemonDetails
+        const details = await fetchPokemonDetails(pokemon.url);
         setSelected(details);
       }
     } catch {
