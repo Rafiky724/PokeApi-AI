@@ -1,6 +1,7 @@
 // hooks/usePokemonModal.ts
 import { useState } from "react";
 import type { PokemonBasic, PokemonDetails } from "../types/pokemon";
+import { fetchPokemonCuriosity, fetchPokemonDetails } from "../core/api";
 
 export function usePokemonModal(pokemonDetailsMap: Record<string, PokemonDetails>) {
   const [selected, setSelected] = useState<PokemonDetails | null>(null);
@@ -18,9 +19,7 @@ export function usePokemonModal(pokemonDetailsMap: Record<string, PokemonDetails
       if (pokemonDetailsMap[pokemon.name]) {
         setSelected(pokemonDetailsMap[pokemon.name]);
       } else {
-        const res = await fetch(pokemon.url);
-        if (!res.ok) throw new Error("Error al obtener detalles");
-        const details: PokemonDetails = await res.json();
+        const details = await fetchPokemonDetails(pokemon.url); // Usa fetchPokemonDetails
         setSelected(details);
       }
     } catch {
@@ -37,22 +36,10 @@ export function usePokemonModal(pokemonDetailsMap: Record<string, PokemonDetails
     setCuriosity(null);
 
     try {
-      const res = await fetch("/api/gemini", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ pokemon: selected.name }),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        setFetchError(data.message || "Error al obtener dato curioso");
-        return;
-      }
-
-      const data = await res.json();
-      setCuriosity(data.datoCurioso);
-    } catch {
-      setFetchError("Error de conexión con el servidor de Render");
+      const curiosityData = await fetchPokemonCuriosity(selected.name); // Usa fetchPokemonCuriosity
+      setCuriosity(curiosityData);
+    } catch (error) {
+      setFetchError(error instanceof Error ? error.message : "Error al obtener dato curioso");
     } finally {
       setCuriosityLoading(false);
     }
