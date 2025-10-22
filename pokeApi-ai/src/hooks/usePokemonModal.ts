@@ -52,7 +52,7 @@ export function usePokemonModal(pokemonDetailsMap: Record<string, PokemonDetails
       const data = await res.json();
       setCuriosity(data.datoCurioso);
     } catch {
-      setFetchError("Error de conexión con el servidor");
+      setFetchError("Error de conexión con el servidor de Render");
     } finally {
       setCuriosityLoading(false);
     }
