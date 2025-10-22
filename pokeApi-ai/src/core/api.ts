@@ -17,7 +17,7 @@ export async function fetchPokemonDetails(url: string): Promise<PokemonDetails> 
 }
 
 export async function fetchPokemonCuriosity(name: string): Promise<string> {
-  const res = await fetch("/api/gemini", {
+  const res = await fetch("https://pokeapi-ai-backend.onrender.com/api/gemini", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ pokemon: name }),
