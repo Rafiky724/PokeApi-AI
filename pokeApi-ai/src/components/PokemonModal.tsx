@@ -34,15 +34,25 @@ export default function PokemonModal({
       ) : selected ? (
         <>
           <div className="flex gap-10 items-center">
-            <button
-              onClick={fetchCuriosity}
-              disabled={curiosityLoading}
-              className="bg-red-600/80 text-white rounded px-6 py-2 hover:bg-red-700 transition-colors w-full max-w-2xs mb-2 cursor-pointer"
-            >
-              {curiosityLoading
-                ? "Buscando dato curioso..."
-                : "Ver dato curioso"}
-            </button>
+            <div>
+              <div className="w-full h-36 flex justify-center items-center bg-gray-600/30 rounded-lg mb-4">
+                <img
+                  src={selected.sprites.front_default}
+                  alt={selected.name}
+                  className="w-60 h-60 object-cover drop-shadow-lg"
+                />
+              </div>
+
+              <button
+                onClick={fetchCuriosity}
+                disabled={curiosityLoading}
+                className="bg-red-600/80 text-white rounded px-6 py-2 hover:bg-red-700 transition-colors w-full max-w-2xs mb-2 cursor-pointer"
+              >
+                {curiosityLoading
+                  ? "Buscando dato curioso..."
+                  : "Ver dato curioso"}
+              </button>
+            </div>
 
             {curiosity && (
               <div className="bg-indigo-100 text-red-900 rounded p-4 mt-2 max-h-36 overflow-y-auto w-full max-w-lg text-center md:text-left">

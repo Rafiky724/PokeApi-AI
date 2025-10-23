@@ -63,13 +63,13 @@ export default function Pagination({
   }
 
   return (
-    <div className="flex justify-center items-center gap-2 mt-8 flex-wrap">
+    <div className="flex justify-center items-center gap-2 flex-wrap">
       <button
         onClick={prevPage}
         disabled={page === 0}
         className={`px-3 py-1 rounded ${
           page === 0
-            ? "bg-gray-300 cursor-not-allowed"
+            ? "bg-red-600 text-white cursor-not-allowed"
             : "bg-red-600 text-white hover:bg-red-700 transition-colors cursor-pointer"
         }`}
       >

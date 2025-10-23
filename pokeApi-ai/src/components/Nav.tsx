@@ -1,6 +1,6 @@
 export default function Nav() {
   return (
-    <nav className="flex items-center justify-between px-6 py-4 bg-red-500/90 backdrop-blur shadow-md">
+    <nav className="flex items-center justify-between px-6 py-4 backdrop-blur-xs bg-red-400/60 shadow-md">
       <div className="flex items-center space-x-3">
         <img
           src="/poke_data.png"
