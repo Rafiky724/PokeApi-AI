@@ -39,7 +39,7 @@ export default function PokemonModal({
                 <img
                   src={selected.sprites.front_default}
                   alt={selected.name}
-                  className="w-60 h-60 object-cover drop-shadow-lg"
+                  className="w-50 h-50 object-cover drop-shadow-lg"
                 />
               </div>
 
