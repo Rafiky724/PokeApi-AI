@@ -7,12 +7,12 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 export default async function handler(req, res) {
   await corsApiPokemon(req, res);
 
-  try {
-    // Limitar a 3 peticiones por IP por día
-    await rateLimiter.check(res, 3, 'CACHE_TOKEN');
-  } catch {
-    return res.status(429).json({ message: 'Has alcanzado el límite de 3 solicitudes por día.' });
-  }
+  // try {
+  //   // Limitar a 3 peticiones por IP por día
+  //   await rateLimiter.check(res, 3, 'CACHE_TOKEN');
+  // } catch {
+  //   return res.status(429).json({ message: 'Has alcanzado el límite de 3 solicitudes por día.' });
+  // }
 
   if (req.method === "OPTIONS") {
     return res.status(200).end();
